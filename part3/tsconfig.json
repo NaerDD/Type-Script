@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    //es2015是es6 TS中拥有编译成ES5的能力
+    //为什么有TS-loader 还要使用babel-loader
+    //为什么需要它？ 
+    //1.ts-loader:转换typescript (es6)为javascript (es6)
+
+    // babel-loader:转换javascript (es6)为javascript (es5)
+
+    // 而Typescript没有做polyfills,这babel确实.如果你写的客户端代码es6,并希望它在现代浏览器上运行,你可能需要babel的polyfills.
+
+    // 服务器端代码不太合理 - 只需使用最新node版本即可获得es6支持.但是babel仍然提供了一些tsc不喜欢的好东西- 比如缓存,或者是一系列非常有用的插件.
+
+    //2.需要 ES6 模块来做 tree-shaking
+    //（目标es5 /模块es6）是我使用的。Webpack本身可以捆绑ES6模块，因此本质上并不需要真正的Babel。使用此设置时，在进行生产构建时，Webpack默认会或多或少地摇晃树。
+    "target": "ES2015",
+    "strict": true
+  }
+}
