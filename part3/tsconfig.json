@@ -8,7 +8,7 @@
 
     // babel-loader:转换javascript (es6)为javascript (es5)
 
-    // 而Typescript没有做polyfills,这babel确实.如果你写的客户端代码es6,并希望它在现代浏览器上运行,你可能需要babel的polyfills.
+    // 而Typescript没有做polyfills,这babel确实.如果你写的客户端代码es6,并希望它在现代浏览器上运行,你可能需要babel的polyfills.(等等新语法)
 
     // 服务器端代码不太合理 - 只需使用最新node版本即可获得es6支持.但是babel仍然提供了一些tsc不喜欢的好东西- 比如缓存,或者是一系列非常有用的插件.
 

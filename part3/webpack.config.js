@@ -15,7 +15,12 @@ module.exports = {
     path:path.resolve(__dirname,'dist'),
     //打包后文件的文件
     filename:'bundle.js',
-    //
+
+    //配置取消箭头函数 要兼容IE系列必备 不然自带的箭头函数 始终报错
+    environment:{
+      //告诉webpack不使用箭头函数
+      arrowFunction:false
+    }
    },
 
    //指定webpack打包时要使用模块
@@ -26,9 +31,40 @@ module.exports = {
           //test指定的是规则生效的文件
           test:/\.ts$/,
           //要使用的loader
-          use:'ts-loader',
+          use:[
+            //将新版js转成旧版js
+            //配置babel
+            {
+              //指定加载器
+              loader:"babel-loader",
+              //设置babel
+              options:{
+                //设置预定义的环境
+                presets:[
+                  [
+                    //指定环境的插件
+                    "@babel/preset-env",
+                    //配置信息
+                    {
+                      //要兼容的目标浏览器
+                      targets:{
+                        //指定corejs的版本
+                        "chrome":"58",
+                        "ie":"11",
+                      },
+                      //使用corejs的方式 usage表示按需加载
+                      "useBuiltIns":"usage",
+                      "corejs":"3"
+                    }
+                  ]
+                ]
+              }
+            },
+            //将ts转成新版本js
+            'ts-loader',
+          ],
           //要排除的文件
-          exclude:/\node-module/,
+          exclude:/\node-module/
         }
       ]
    },
